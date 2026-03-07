@@ -2,13 +2,13 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const usersSchema = new mongoose.Schema({
-    userName:{type: String, trim: true, required: true},
-    email: {type: String, required: true, unique: true},
+    userName:{type: String, trim: true, required: true, unique: true},
+    email: {type: String, required: true, unique: true, lowercase: true},
     password: {type: String, required: true, select: false}, 
     rol: {
         type: String, required: true, enum: ["admin", "user"], default: "user"
     },
-    avatar: {type: String},
+    avatar: {url: String, public_id: String},
     likedPosts: [{type: mongoose.Schema.Types.ObjectId, ref: "Post"}]
 },
 {timestamps: true, 
