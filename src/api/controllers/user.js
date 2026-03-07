@@ -1,7 +1,8 @@
 const bcrypt = require ("bcrypt");
 const User = require("../models/user.js");
 const { generateSign } = require("../../config/jwt.js");
-const { error } = require("node:console");
+const Post = require("../models/post.js");
+
 
 
 const register = async (req, res, next) => {
@@ -107,10 +108,6 @@ const updateProfile = async (req, res, next) => {
         if (email) user.email = email;
         if (avatar) user.avatar = avatar;
 
-        if (condition) {
-            
-        }
-
         await user.save();
 
         return res.status(200).json({
@@ -144,3 +141,26 @@ const deleteUser = async (req, res, next) => {
         return res.status(500).json({error: "Error interno del servidor"})
     }
 }
+
+const userLikedPost = async (req, res, next) => {
+    try {
+        const {postId} = req.params;
+
+        const user = await User.findById(req.user._id);
+        if (!user) {
+            return res.status(404).json({error: "Usuario no encontrado"})
+        }
+
+        if (!user.likedPosts.includes(postId)) {
+            user.likedPosts.push(postId);
+        }
+
+        await user.save();
+
+        return res.status(200).json({message: "Has añadido este post a tus lista de likes"})
+    } catch (error) {
+        return res.status(500).json({error: "Error interno del servidor"})
+    }
+}
+
+module.exports = {register, login, getUser, updateProfile, deleteUser, userLikedPost};
