@@ -1,7 +1,7 @@
 const bcrypt = require ("bcrypt");
 const User = require("../models/user.js");
 const { generateSign } = require("../../config/jwt.js");
-const Post = require("../models/post.js");
+
 
 
 

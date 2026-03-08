@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const commentsSchema = new mongoose.Schema({
     user: {type: mongoose.Schema.Types.ObjectId, ref: "User", required: true}, 
     post: {type: mongoose.Schema.Types.ObjectId, ref: "Post", required: true}, 
-    text: {type: String, required: true},
+    text: {type: String, required: true, trim: true},
     image: {type: String},
     superLike: {type: Boolean, default: false}
 }, {
