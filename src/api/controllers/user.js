@@ -3,8 +3,6 @@ const User = require("../models/user.js");
 const { generateSign } = require("../../config/jwt.js");
 
 
-
-
 const register = async (req, res, next) => {
     try {
     const {userName, password, email} = req.body;
@@ -49,13 +47,15 @@ const login = async (req, res, next) => {
 
         const user = await User.findOne({email}).select("+password");
         if (!user)return res.status(401).json({error: "Credenciales inválidos"});
-
+       
         const userCheck = bcrypt.compareSync(password, user.password);
         if (!userCheck) {
             return res.status(401).json({error: "Credenciales inválidos"})
         }
-
+        
+        console.log(process.env.JWT_SECRET);
         const token = generateSign (user);
+        
 
         const userToShow = {
             userName : user.userName,

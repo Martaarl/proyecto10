@@ -1,3 +1,4 @@
+const BannedWord = require("../models/bannedWord");
 const Comment = require("../models/comment");
 const Post = require("../models/post");
 
@@ -6,6 +7,14 @@ const createComment = async (req, res, next) => {
         const {text, image, postId} = req.body;
         if (!text) {
             return res.status(400).json({error: "El comentario no puede estar vacío"})
+        }
+
+        const bannedWords = await BannedWord.find();
+        const textNewComment = text.toLowerCase();
+
+        const containsBannedWord = bannedWords.some(banned => textNewComment.includes(banned.word));
+        if (containsBannedWord) {
+            return res.status(400).json({error: "Vocabulario malsonante detectado"})
         }
 
         const userId = req.user._id;
@@ -86,4 +95,4 @@ const superLikeComment = async (req, res, next) => {
     }
 }
 
-module.exports = {createComment, deleteComment};
+module.exports = {createComment, deleteComment, superLikeComment};
