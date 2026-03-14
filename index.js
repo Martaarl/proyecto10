@@ -8,5 +8,5 @@ const PORT = process.env.PORT || 3000;
 connectDB();
 
 app.listen(PORT, () => {
-    console.log(`Servido funcionando en http://localhost:${PORT}`)
+    console.log(`Servidor funcionando en http://localhost:${PORT}`)
 })

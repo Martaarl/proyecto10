@@ -1,16 +1,21 @@
 const Post = require("../models/post");
+const cloudinary = require("../../utils/cloudinary")
 
 const createPost = async (req, res, next) => {
 try {
-    const {title, image, description} = req.body;
-    if (!title || !image || !description) {
+    const {title, description} = req.body;
+   
+    if (!title || !description || !req.file) {
         return res.status(400).json({error: "Faltan campos obligatorios"})
     }
 
     const newPost = new Post({
         title,
-        image,
-        description
+        description,
+        image: {
+            url: req.file.path,
+            public_id: req.file.filename
+        }
     });
 
     const postSaved = await newPost.save();
@@ -51,10 +56,14 @@ const deletePost = async(req, res, next) => {
     try {
         const {id} = req.params;
 
-        const post = await Post.findByIdAndDelete(id);
+        const post = await Post.findById(id);
         if (!post) return res.status(404).json({error: "El post que intentas eliminar no existe"});
 
-        return res.status(200).json({message: "Post eliminado correctamente", post})
+        await cloudinary.uploader.destroy(post.image.public_id)
+        
+        await Post.findByIdAndDelete(id);
+
+        return res.status(200).json({message: "Post eliminado correctamente"})
 
     } catch (error) {
         return res.status(500).json({error: "Error interno del servidor"})
@@ -68,12 +77,21 @@ const updatePost = async( req, res, next) => {
     const post = await Post.findById(id);
     if (!post) return res.status(404).json({error: "No se encuentra el post que estás buscando"});
 
-    const {title, image, description} = req.body;
+    const {title, description} = req.body;
+
     if(title) post.title = title;
-    if(image) post.image = image;
     if(description) post.description = description;
 
-    const postUpdated = post.save();
+    if (req.file) {
+        await cloudinary.uploader.destroy(post.image.public_id)
+
+        post.image = 
+        {url: req.file.path,
+        public_id: req.file.filename
+        }
+    };
+
+    const postUpdated = await post.save();
 
     return res.status(200).json({message: "Post actualizado correctamente" , post: postUpdated});
     } catch (error) {
