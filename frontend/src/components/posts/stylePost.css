@@ -1,0 +1,38 @@
+.Card-Post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    width: 300px;
+    height: auto;
+    background-color: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.Card-Post:hover{
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.Title-Post{
+    color: var(--green-main);
+    width: 200px;
+    height: auto;
+    font-weight: bold;
+}
+
+.Image-Post{
+    height: auto;
+    width: 200px;
+}
+
+.Description-Post{
+    width: 200px;
+    height: auto;
+    color: #666;
+}
