@@ -1,4 +1,4 @@
-
+// estructura básica y diseño temporal: luego quiero añadir que la description solo se vea al clicar
 export const Posts = async () => {
     const container = document.createElement("section");
     container.id= "posts-container";
@@ -23,7 +23,7 @@ export const Posts = async () => {
             titlePost.textContent = post.title;
             
             const imgPost = document.createElement("img");
-            imgPost.src = post.image.url;
+            imgPost.src = post.image?.url;
             imgPost.alt = post.title;
             imgPost.className= "Image-Post";
 
@@ -39,4 +39,6 @@ export const Posts = async () => {
     } catch (error) {
         console.error("Error cargando posts:", error)
     }
+
+    return container
 }
