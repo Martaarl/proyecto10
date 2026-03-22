@@ -12,20 +12,20 @@
 }
 
 .Input-Name{
-    width: 20px;
+    width: 100px;
 }
 
 .Input-Email{
-    width: 30px;
+    width: 100px;
     height: 20px;
     background-color: red;
 }
 
 .Input-Password{
-    width: 30px;
+    width: 100px;
 }
 
 .Button-Submit {
-    width: 30px;
+    width: 70px;
     height: 20px;
 }

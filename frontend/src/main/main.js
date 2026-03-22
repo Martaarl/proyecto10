@@ -1,6 +1,7 @@
 import { Header } from "../components/header/header.js";
 import { Login } from "../components/login/login.js";
 import { Posts } from "../components/posts/posts.js";
+import { Register } from "../components/register/register.js";
 
 const app = document.querySelector("#app");
 
@@ -29,9 +30,17 @@ export const renderPosts = async () => {
 const showLogin = async () => {
     contentContainer.innerHTML = "";
 
-    const login = await Login ();
+    const login = await Login (showRegister);
 
     contentContainer.appendChild(login);
+}
+
+const showRegister = async () => {
+    contentContainer.innerHTML="";
+
+    const register = Register();
+
+    contentContainer.appendChild(register);
 }
 
 renderApp();

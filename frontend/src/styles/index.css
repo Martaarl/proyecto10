@@ -2,6 +2,7 @@
 @import "/frontend/src/components/header/styleHeader.css";
 @import "/frontend/src/components/login/styleLogin.css";
 @import "/frontend/src/components/posts/stylePost.css";
+@import "/frontend/src/components/register/register.css";
 
 :root{
     --green-main: #1f5c4d;
@@ -27,14 +28,24 @@ body {
     width: 100%;
 }
 
-
-
-#posts-container{
+.posts-container{
     display: grid;
     width: 100%;
-    margin: 0px;
+    padding: 20px;
+    align-items: center;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     padding: 20px;
     gap: 20px;
     justify-content: center;
+    background-color: red;
+}
+
+.content{
+    display: flex;
+    width: 100%;
+    background-color: red;
+    flex-direction: row;
+    padding: 20px;
+    gap: 20px;
+    align-items: center;
 }
