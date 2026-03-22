@@ -4,34 +4,34 @@ import { Posts } from "../components/posts/posts.js";
 
 const app = document.querySelector("#app");
 
-let postsContainer;
+let contentContainer;
 
 export const renderApp =  async () => {
     app.innerHTML = "";
 
     const header = Header(showLogin);
 
-    postsContainer = document.createElement("div");
-    postsContainer.id = "posts-root";
+    contentContainer = document.createElement("div");
+    contentContainer.id = "content";
     
-    app.append(header, postsContainer);
+    app.append(header, contentContainer);
 
     renderPosts();
 };
 
 export const renderPosts = async () => {
-    postsContainer.innerHTML = "";
+    contentContainer.innerHTML = "";
 
     const posts = await Posts();
-    postsContainer.appendChild(posts);
+    contentContainer.appendChild(posts);
 }
 
-const showLogin = () => {
-    app.innerHTML = "";
+const showLogin = async () => {
+    contentContainer.innerHTML = "";
 
-    const login = Login ();
+    const login = await Login ();
 
-    app.appendChild(login);
+    contentContainer.appendChild(login);
 }
 
 renderApp();

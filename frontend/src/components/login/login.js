@@ -8,6 +8,11 @@ export const Login = async () => {
     const loginForm = document.createElement("form");
     loginForm.className = "Login-Form";
 
+    loginForm.addEventListener("submit", (e) =>{
+        e.preventDefault();
+        console.log("form enviado");
+    })
+
     const inputName = document.createElement("input");
     inputName.className= "Input-Name";
 
@@ -17,10 +22,11 @@ export const Login = async () => {
     const inputPassword = document.createElement("input");
     inputPassword.className = "Input-Password";
 
-    const buttonLogin = document.createElement("button");
-    buttonLogin.className = "Button-Login"
+    const buttonSubmit = document.createElement("button");
+    buttonSubmit.type="submit";
+    buttonSubmit.className = "Button-Submit";
 
-    loginForm.append(inputName, inputEmail, inputPassword, buttonLogin);
+    loginForm.append(inputName, inputEmail, inputPassword, buttonSubmit);
 
     sectionLogin.appendChild(loginForm);
 

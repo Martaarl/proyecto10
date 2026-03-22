@@ -1,3 +1,5 @@
+
+
 export const Header = (loginClick) => {
     const header = document.createElement("header");
     header.className = "header";
@@ -11,7 +13,7 @@ export const Header = (loginClick) => {
 
     buttonLogin.addEventListener("click", loginClick)
 
-    header.appendChild(title, buttonLogin);
+    header.append(title, buttonLogin);
 
     return header;
 }
