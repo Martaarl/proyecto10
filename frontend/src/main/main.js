@@ -30,15 +30,15 @@ export const renderPosts = async () => {
 const showLogin = async () => {
     contentContainer.innerHTML = "";
 
-    const login = await Login (showRegister);
+    const login = await Login (showRegister, renderPosts);
 
     contentContainer.appendChild(login);
 }
 
 const showRegister = async () => {
-    contentContainer.innerHTML="";
+    contentContainer.innerHTML= "";
 
-    const register = Register();
+    const register = Register(renderPosts);
 
     contentContainer.appendChild(register);
 }

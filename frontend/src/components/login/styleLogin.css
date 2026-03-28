@@ -1,9 +1,6 @@
 .Section-Login{
     padding: 10px;
-}
-
-.Login-Form {
-    width: 100%;
+    margin: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -11,21 +8,50 @@
     gap: 20px;
 }
 
-.Input-Name{
-    width: 100px;
+.Login-Form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    width: 300px;
 }
 
-.Input-Email{
-    width: 100px;
-    height: 20px;
-    background-color: red;
+.Login-Form input:focus{
+    border-color: var(--green-main);
+    box-shadow: 0 0 0 2px rgba(0, 150, 100, 0.1);
 }
 
-.Input-Password{
-    width: 100px;
+.Login-Form input{
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    outline: none;
+    font-size: 14px;
+    transition: all 0.2s ease;
 }
 
-.Button-Submit {
-    width: 70px;
-    height: 20px;
+
+.Anchor-Submit{
+    color: var(--green-main);
+}
+
+.Button-Back {
+    background: none;
+    width: 300px;
+    border: none;
+    color: var(--green-main);
+    cursor: pointer;
+    font-size: 18px;
+    margin-bottom: 10px;
+    align-self: center;
+    opacity: 0.7;
+}
+
+.Button-Back:hover {
+    text-decoration: underline;
+    opacity: 1;
 }

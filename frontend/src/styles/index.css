@@ -6,7 +6,7 @@
 
 :root{
     --green-main: #1f5c4d;
-    --green-soft: #2f7a68;
+    --green-soft: #6bb1a1;
     --beige: #f8f4ec;
     --text-dark: #333;
 }
@@ -16,6 +16,7 @@
     padding: 0;
     text-decoration: none;
     width: 100%;
+    box-sizing: border-box;
 }
 
 body {
@@ -24,28 +25,24 @@ body {
     display: flex;
     flex-direction: column;
     text-align: center;
-  
     width: 100%;
 }
 
-.posts-container{
+#content{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+#posts-container{
     display: grid;
     width: 100%;
     padding: 20px;
-    align-items: center;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    padding: 20px;
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 300px));
+    gap: 30px;
     justify-content: center;
-    background-color: red;
 }
 
-.content{
-    display: flex;
-    width: 100%;
-    background-color: red;
-    flex-direction: row;
-    padding: 20px;
-    gap: 20px;
-    align-items: center;
-}
+

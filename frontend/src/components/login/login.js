@@ -1,6 +1,6 @@
+import { API } from "../../utils/api.js";
 
-
-export const Login = async (goToRegister) => {
+export const Login = async (goToRegister, goBack) => {
 
     const sectionLogin = document.createElement("section");
     sectionLogin.className = "Section-Login";
@@ -23,12 +23,21 @@ export const Login = async (goToRegister) => {
     const buttonSubmit = document.createElement("button");
     buttonSubmit.type="submit";
     buttonSubmit.className = "Button-Submit";
+    buttonSubmit.textContent = "Inicia sesión";
 
     const goRegister = document.createElement("p");
+    goRegister.className = "Anchor-Submit";
     goRegister.textContent = "¿No tienes cuenta? Regístrate";
 
-    loginForm.append(inputName, inputEmail, inputPassword, buttonSubmit, goRegister);
+    const backButton = document.createElement("button");
+    backButton.textContent = "Inicio";
+    backButton.className= "Button-Back";
+    backButton.type= "button";
 
+    loginForm.append(inputName, inputEmail, inputPassword, buttonSubmit, goRegister);
+    loginForm.prepend(backButton);
+    sectionLogin.appendChild(loginForm);
+    
     loginForm.addEventListener("submit", async (e) =>{
         e.preventDefault();
 
@@ -36,26 +45,21 @@ export const Login = async (goToRegister) => {
         const email = inputEmail.value;
         const password = inputPassword.value;
 
-        try {
-            const res = await fetch("http://localhost:3000/users/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type" : "application/json"
-                },
-                body: JSON.stringify({name,email, password})
-            })
+        const res = await API( {
+            endpoint: "users/login",    
+            method: "POST",
+            body:{name,email, password},
+            isJson: true
+            });
         const data = await res.json();
 
-        localStorage.setItem("token", data.token)
-
-        } catch (error) {
-            console.error("Error en el login:", error)
-        }
-    })
+        localStorage.setItem("token", data.token);
+        goBack();
+    });
 
     goRegister.addEventListener("click", goToRegister);
 
-    sectionLogin.appendChild(loginForm);
+    backButton.addEventListener("click", goBack);
 
     return sectionLogin;
 }

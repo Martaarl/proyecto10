@@ -1,8 +1,12 @@
-export const Register = () => {
+import { API } from "../../utils/api.js";
+
+
+export const Register = (goBack) => {
     const sectionRegister = document.createElement("section");
     sectionRegister.className= "Section-Register";
 
     const form = document.createElement("form");
+    form.className= "Register-Form";
 
     const inputName = document.createElement("input");
     inputName.className = "Input-Name";
@@ -21,7 +25,13 @@ export const Register = () => {
     buttonRegister.textContent = "Registrarse";
     buttonRegister.className = "Button-Submit";
 
+    const backButton = document.createElement("button");
+    backButton.textContent = "Vuelve atrás 🔙";
+    backButton.className= "Button-Back";
+    backButton.type= "button";
+
     form.append(inputName, inputEmail, inputPassword, buttonRegister);
+    form.prepend(backButton);
     sectionRegister.appendChild(form);
 
     form.addEventListener("submit", async(e) => {
@@ -31,32 +41,20 @@ export const Register = () => {
         const email = inputEmail.value;
         const password = inputPassword.value;
 
-        try {
-            console.log({
-  userName,
-  email,
-  password,
-  checkUserName: !!userName,
-  checkEmail: !!email,
-  checkPassword: !!password
-});
-            const res = await fetch("http://localhost:3000/users/register", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({userName, email, password})
+        const res = await API({
+            endpoint: "users/register",
+            method: "POST",
+            body: {userName, email, password},
+            isJson: true,
             });
 
             const data = await res.json();
 
             localStorage.setItem("token", data.token);
-            console.log("REGISTER:", data)
-        } catch (error) {
-            console.error("Error register", error)
-        }
-        console.log(email);
-    })
+            goBack();
+    });
+
+    backButton.addEventListener("click", goBack);
 
     return sectionRegister;
 }

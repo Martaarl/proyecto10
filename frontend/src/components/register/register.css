@@ -1,0 +1,55 @@
+
+.Section-Register{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    width: 300px;
+}
+
+.Register-Form{
+    width: 100%;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.Section-Register input:focus{
+    border-color: var(--green-main);
+    box-shadow: 0 0 0 2px rgba(0, 150, 100, 0.1);
+}
+
+.Section-Register input{
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    outline: none;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    margin: 10px;
+}
+
+.Button-Submit{
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background-color: var(--green-main);
+    color: white;
+    outline: none;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    margin: 10px;
+}
+
+.Button-Submit:hover {
+    background-color: var(--green-soft);
+    transform: scale(1.03);
+}
+
+
