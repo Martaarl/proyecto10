@@ -1,20 +1,24 @@
 import { API } from "../../utils/api.js";
 
 // estructura básica y diseño temporal: luego quiero añadir que la description solo se vea al clicar
-export const Posts = async () => {
+export const Posts = async (search = "") => {
     const container = document.createElement("section");
     container.id= "posts-container";
 
     const posts = await API({endpoint: "posts"});
- 
-    if (posts.length === 0) {
+
+    const filteredPosts = posts.filter(post=>{
+       return post.title.toLowerCase().includes((search || "").toLowerCase());
+    });
+
+   /* if (filteredPosts.length === 0) {
         container.innerHTML = "<p>No hay posts todavía</p>";
-        return;
-    };
+        return container;
+    };*/
 
     container.innerHTML = "";
 
-     posts.forEach(post => {
+     filteredPosts.forEach(post => {
         const articlePost = document.createElement("article");
         articlePost.className="Card-Post"
 

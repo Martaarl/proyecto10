@@ -1,93 +1,62 @@
 .Card-Post {
-    width: 300px;
-    height: 400px;
-    background-color: white;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     position: relative;
+    width: 300px;
+    height: 350px;
     overflow: hidden;
+    border-radius: 18px;
+    cursor: pointer;
 }
 
 .Card-Content{
-    position: absolute;
+   position: absolute;
     bottom: 0;
+    left: 0;
     width: 100%;
-    height: 60px;
-    z-index: 2;
-    background: rgba(0, 0, 0, 0.8); 
-    overflow: hidden;
+    padding: 15%;
+
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,1.2),
+        rgba(0,0,0,1),
+        transparent
+    );
+
     color: white;
-    opacity: 0;
+    padding: 10px;
+
     display: flex;
     flex-direction: column;
-    transform: translateY(60%);
-    /*justify-content: center;*/
-    align-items: flex-end;
-    /*padding: 20px;
-    text-align: center;*/
-    transition: transform 0.3s ease;
-}
-.Card-Post:hover{
-    transform: translateY(-6px);
-    box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+    justify-content: flex-end;
+    gap: 5px;
+   
+    transform: translateY(30%); 
+    transition: transform 0.4s ease;
 }
 
 .Card-Post:hover .Card-Content {
+   transform: translateY(0);
+}
+.Card-Post:hover .Description-Post {
     opacity: 1;
-    height: 120px;
+    max-height: 200px;
 }
 
-.Card-Post img {
-    /*transition: transform 0.4s ease;*/
+.Title-Post{
+   font-size: 18px;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    color: var(--green-soft);
+}
+
+.Image-Post{
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.Card-Post:hover img{
-    transform: scale(1.05);
-}
-
-.Title-Post{
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--green-soft);
-    margin: 0 0 0px;
-    max-height: 1.2em;
-    -webkit-box-orient: vertical;
-    font-weight: bold;
-    overflow: hidden;
-   /* transform: translateY(50%);*/
-    transition: all 0.3 ease;
-}
-
-.Title-Post:hover{
-    max-height: 4em;
-}
-
-.Image-Post{
-    height: 200px;
-    width: 100%;
-    object-fit: cover;
-    display: block;
-}
-
 .Description-Post{
-    font-size: 14px;
-    margin-top: 8px;
-    line-height: 1.5;
     opacity: 0;
-    transition: opacity 0.3s ease;
-    color: rgba(255, 255, 255, 0,9);
-}
-
-.Description-Post:hover{
-    opacity: 1;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
 }

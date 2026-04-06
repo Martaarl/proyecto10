@@ -6,11 +6,12 @@ import { Register } from "../components/register/register.js";
 const app = document.querySelector("#app");
 
 let contentContainer;
+let allPost = [];
 
 export const renderApp =  async () => {
     app.innerHTML = "";
 
-    const header = Header(showLogin);
+    const header = Header(showLogin,renderPosts);
 
     contentContainer = document.createElement("div");
     contentContainer.id = "content";
@@ -20,17 +21,18 @@ export const renderApp =  async () => {
     renderPosts();
 };
 
-export const renderPosts = async () => {
+export const renderPosts = async (search = "") => {
     contentContainer.innerHTML = "";
 
-    const posts = await Posts();
+    const posts = await Posts(search);
+    
     contentContainer.appendChild(posts);
 }
 
 const showLogin = async () => {
     contentContainer.innerHTML = "";
 
-    const login = await Login (showRegister, renderPosts);
+    const login = await Login (showRegister, goHome);
 
     contentContainer.appendChild(login);
 }
@@ -38,9 +40,13 @@ const showLogin = async () => {
 const showRegister = async () => {
     contentContainer.innerHTML= "";
 
-    const register = Register(renderPosts);
+    const register = Register(goHome);
 
     contentContainer.appendChild(register);
+}
+
+const goHome = () => {
+    renderPosts();
 }
 
 renderApp();
