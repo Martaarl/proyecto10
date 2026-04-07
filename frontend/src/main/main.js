@@ -1,5 +1,6 @@
 import { Header } from "../components/header/header.js";
 import { Login } from "../components/login/login.js";
+import { Postdetail } from "../components/postDetail/postDetail.js";
 import { Posts } from "../components/posts/posts.js";
 import { Register } from "../components/register/register.js";
 
@@ -22,10 +23,15 @@ export const renderApp =  async () => {
 };
 
 export const renderPosts = async (search = "") => {
-    contentContainer.innerHTML = "";
+    contentContainer.innerHTML = "<p>Cargando posts...</p>";
 
-    const posts = await Posts(search);
-    
+    const posts = await Posts(search, showPostDetail);
+
+    if (!posts) {
+        contentContainer.innerHTML = `<p class = "Error-Message"> Error cargando los posts </p>`
+    }
+
+    contentContainer.innerHTML="";
     contentContainer.appendChild(posts);
 }
 
@@ -47,6 +53,14 @@ const showRegister = async () => {
 
 const goHome = () => {
     renderPosts();
+}
+
+const showPostDetail = (post) =>{
+    contentContainer.innerHTML = "";
+
+    const detail = Postdetail(post, goHome);
+
+    contentContainer.appendChild(detail);
 }
 
 renderApp();

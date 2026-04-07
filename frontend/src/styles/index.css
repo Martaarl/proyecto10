@@ -3,6 +3,7 @@
 @import "/frontend/src/components/login/styleLogin.css";
 @import "/frontend/src/components/posts/stylePost.css";
 @import "/frontend/src/components/register/register.css";
+@import "/frontend/src/components/postDetail/postDetail.css";
 
 :root{
     --green-main: #1f5c4d;
@@ -45,4 +46,13 @@ body {
     justify-content: center;
 }
 
+.Error-Message {
+    text-align: center;
+    padding: 40px;
+    color: #e74c3c;
+    font-weight: bold;
+}
 
+.Card-Overlay {
+    pointer-events: none;
+}
