@@ -55,10 +55,10 @@ const goHome = () => {
     renderPosts();
 }
 
-const showPostDetail = (post) =>{
+const showPostDetail = async (post) =>{
     contentContainer.innerHTML = "";
 
-    const detail = Postdetail(post, goHome);
+    const detail = await Postdetail(post, goHome);
 
     contentContainer.appendChild(detail);
 }

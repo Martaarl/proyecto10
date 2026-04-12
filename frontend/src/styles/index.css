@@ -4,6 +4,7 @@
 @import "/frontend/src/components/posts/stylePost.css";
 @import "/frontend/src/components/register/register.css";
 @import "/frontend/src/components/postDetail/postDetail.css";
+@import "/frontend/src/components/comments/comments.css";
 
 :root{
     --green-main: #1f5c4d;

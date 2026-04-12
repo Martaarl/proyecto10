@@ -95,4 +95,16 @@ const superLikeComment = async (req, res, next) => {
     }
 }
 
-module.exports = {createComment, deleteComment, superLikeComment};
+const getCommentsByPost = async (req, res, next) => {
+    try {
+        const {postId} = req.params;
+
+        const comments= await Comment.find({post: postId}).populate("user", "name");
+
+        return res.status(200).json(comments);
+    } catch (error) {
+        return res.status(500).json({error: "Error al obtener comentarios"});
+    }
+}
+
+module.exports = {createComment, deleteComment, superLikeComment, getCommentsByPost};

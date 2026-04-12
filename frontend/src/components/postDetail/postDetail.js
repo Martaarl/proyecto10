@@ -1,4 +1,6 @@
-export const Postdetail = (post, goBack) => {
+import { Comments } from "../comments/comments.js";
+
+export const Postdetail = async (post, goBack) => {
     const container = document.createElement("section");
     container.className = "Post-Detail";
 
@@ -23,9 +25,11 @@ export const Postdetail = (post, goBack) => {
     const card = document.createElement("div");
     card.className = "Post-Card";
 
+    const comments = await Comments(post._id);
+
     card.append(title, img, description);
 
-    container.append(backButton, card);
+    container.append(backButton, card, comments);
 
     return container;
 }
