@@ -1,5 +1,70 @@
 .Comments-Container{
-    width: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+    width: 100%;
+    max-width: 600px;
     height: 20px;
-    background-color: red;
+}
+
+.Comment-Div {
+    background-color: white;
+    padding: 12px 14px;
+    border-radius: 15px;
+    margin-bottom: 12px;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+
+    transition: all 0.2s ease;
+}
+
+.Comment-Div:hover{
+    transform: translateY(-2px);
+}
+
+.Comment-User {
+    font-weight: bold;
+    font-size: 13px;
+    margin-bottom: 5px;
+    color: var(--green-main);
+}
+
+.Comment-Text{
+    font-size: 14px;
+    color: #555;
+    line-height: 1.4;
+}
+
+.Comment-Form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.Comment-Input {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+
+    outline: none;
+}
+
+.Comment-Form button {
+    background-color: var(--green-main);
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.Comment-Form button:hover{
+    transform: scale(1.05);
 }

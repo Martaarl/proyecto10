@@ -2,7 +2,7 @@ import { API } from "./api.js";
 
 export const getComments = async (postId) => {
     try {
-    const data = await API ({
+    const comments = await API ({
         endpoint: `comments/post/${postId}`
     });
 

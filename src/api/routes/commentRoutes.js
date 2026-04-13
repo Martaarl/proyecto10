@@ -3,7 +3,7 @@ const { deleteComment, createComment, superLikeComment, getCommentsByPost } = re
 
 const router = require("express").Router();
 
-router.get("/postId", getCommentsByPost);
+router.get("/post/:postId", getCommentsByPost);
 router.post("/", isAuth, createComment);
 router.delete("/:id", isAuth, deleteComment);
 router.put("/superlike/:id", isAuth, isAdmin, superLikeComment);

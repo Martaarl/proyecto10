@@ -45,13 +45,12 @@ export const Login = async (goToRegister, goBack) => {
         const email = inputEmail.value;
         const password = inputPassword.value;
 
-        const res = await API( {
+        const data = await API( {
             endpoint: "users/login",    
             method: "POST",
-            body:{name,email, password},
+            body:{name, email, password},
             isJson: true
             });
-        const data = await res.json();
 
         localStorage.setItem("token", data.token);
         goBack();

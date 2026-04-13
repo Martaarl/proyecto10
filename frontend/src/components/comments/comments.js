@@ -13,14 +13,14 @@ export const Comments = async (postId) => {
     input.className= "Comment-Input";
 
     const button = document.createElement("button");
-    button.textContent = "Enviar";
+    button.textContent = "📤";
     button.type = "Submit";
 
     form.append(input, button);
 
     const commentsContainer = document.createElement("div");
     
-    container.appendChild(form, commentsContainer);
+    container.append(form, commentsContainer);
 
     const renderComments = async () => {
         commentsContainer.innerHTML = "<p>Cargando comentarios...</p>";
@@ -32,14 +32,23 @@ export const Comments = async (postId) => {
         if (!comments || comments.length === 0) {
             commentsContainer.innerHTML = "<p>No hay comentarios</p>";
             return
-        }
+        };
 
         comments.forEach(comment => {
-            const p = document.createElement("p");
-            p.textContent= comment.text;
-            p.className = "pComments";
+            const commentDiv = document.createElement("div");
+            commentDiv.className="Comment-Div";
 
-            container.appendChild(p);
+            const commentUser = document.createElement("p");
+            commentUser.className = "Comment-User";
+            commentUser.textContent = comment.user?.name || "Usario";
+
+            const commentText = document.createElement("p");
+            commentText.textContent= comment.text;
+            commentText.className = "Comment-Text";
+
+            commentDiv.append(commentUser, commentText);
+
+            commentsContainer.appendChild(commentDiv);
         });
     };
 
