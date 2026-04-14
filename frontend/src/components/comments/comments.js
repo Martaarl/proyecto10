@@ -58,10 +58,10 @@ export const Comments = async (postId) => {
         const text = input.value;
 
         await API ({
-            endpoint: "comments",
+            endpoint: "/comments",
             method: "POST",
             body: {
-                post: postId,
+                postId,
                 text
             }, 
             isJson: true,

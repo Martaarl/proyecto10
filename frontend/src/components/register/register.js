@@ -42,7 +42,7 @@ export const Register = (goBack) => {
         const password = inputPassword.value;
 
         const res = await API({
-            endpoint: "users/register",
+            endpoint: "/users/register",
             method: "POST",
             body: {userName, email, password},
             isJson: true,

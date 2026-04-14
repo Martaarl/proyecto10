@@ -4,7 +4,7 @@ export const Posts = async (search = "", onPostClick) => {
     const container = document.createElement("section");
     container.id= "posts-container";
 
-    const posts = await API({endpoint: "posts"});
+    const posts = await API({endpoint: "/posts"});
     if (!posts) return null;
 
     const filteredPosts = posts.filter(post=>{

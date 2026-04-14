@@ -46,13 +46,19 @@ export const Login = async (goToRegister, goBack) => {
         const password = inputPassword.value;
 
         const data = await API( {
-            endpoint: "users/login",    
+            endpoint: "/users/login",    
             method: "POST",
             body:{name, email, password},
             isJson: true
             });
-
+            
+        if (!data || !data.token) {
+            console.error("Login fallido");
+            return;
+        }
         localStorage.setItem("token", data.token);
+
+        alert("Sesión iniciada correctamente✅");
         goBack();
     });
 

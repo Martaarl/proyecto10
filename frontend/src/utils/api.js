@@ -1,12 +1,16 @@
-const URL =  "http://localhost:3000/";
+const URL =  "http://localhost:3000";
 
 export const API = async ({endpoint, method = "GET", body, isJson = false, token = null}) => {
     try {
-        const headers = {Authorization: `Bearer ${token}`};
+        const headers = {};
         //esto en verdad podría hacerse también con un if para token y otro para el isJson no?
         if(isJson){
-            headers["Content-Type"]= "application/json"
+            headers["Content-Type"] = "application/json";
         }; 
+
+        if (token) {
+            headers["Authorization"]= `Bearer ${token}`;
+        }
 
         console.log("URL:", URL + endpoint);
         console.log("URL:", URL + endpoint);
@@ -17,11 +21,12 @@ export const API = async ({endpoint, method = "GET", body, isJson = false, token
             headers
         });
 
-        const response = await res.json();
+        const data = await res.json();
 
-        return response;
+        return data;
 
     } catch (error) {
-        return error
+        console.error("API ERROR", error)
+        return null
     }
 }
