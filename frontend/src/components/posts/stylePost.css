@@ -60,3 +60,25 @@
     overflow: hidden;
     transition: all 0.3s ease;
 }
+
+.Like-Button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    border: none;
+    border-radius: 80%;
+    width: 50px;
+
+    padding: 8px;
+    cursor: pointer;
+
+    font-size: 16px;
+    transition: 0.2s;
+
+    background-color: var(--green-soft);
+}
+
+.Like-Button:hover {
+    transform: scale(1.2);
+}

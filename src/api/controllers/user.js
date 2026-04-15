@@ -151,13 +151,25 @@ const userLikedPost = async (req, res, next) => {
             return res.status(404).json({error: "Usuario no encontrado"})
         }
 
-        if (!user.likedPosts.includes(postId)) {
+        const isLiked = user.likedPosts.includes(postId);
+
+        if (isLiked) {
+            user.likedPosts.pull(postId);
+            await user.save();
+
+            return res.status(200).json({
+                message: "Post eliminado de favoritos",
+                likedPosts: user.likedPosts
+            });
+        } else {
             user.likedPosts.push(postId);
-        }
+            await user.save();
 
-        await user.save();
-
-        return res.status(200).json({message: "Has añadido este post a tus lista de likes"})
+            return res.status(200).json({
+                message: "Post añadido a favoritos",
+                likedPosts: user.likedPosts
+            });
+        };
     } catch (error) {
         return res.status(500).json({error: "Error interno del servidor"})
     }

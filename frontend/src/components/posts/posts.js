@@ -26,6 +26,10 @@ export const Posts = async (search = "", onPostClick) => {
         imgPost.alt = post.title;
         imgPost.className= "Image-Post";
 
+        const likeButton = document.createElement("button");
+        likeButton.className = "Like-Button";
+        likeButton.textContent = "🤍";
+
         const descriptionPost = document.createElement("p");
         descriptionPost.textContent = post.description;
         descriptionPost.className ="Description-Post";
@@ -35,11 +39,28 @@ export const Posts = async (search = "", onPostClick) => {
 
         content.append(titlePost, descriptionPost);
 
-        articlePost.append(imgPost, content);
+        articlePost.append(imgPost, likeButton, content);
 
         articlePost.addEventListener("click", () => {
         console.log("Click en post");
           onPostClick(post);
+        });
+
+        likeButton.addEventListener("click", async () =>{
+          const token = localStorage.getItem("token");
+
+          if (!token) {
+            alert("Inicia sesión para guardar posts");
+            return;
+          }
+
+          await API({
+            endpoint: `/users/likedPost/${post._id}`,
+            method: "PUT", 
+            token
+          });
+
+          likeButton.textContent = likeButton.textContent === "🤍" ? "❤️" : "🤍";
         });
 
         container.appendChild(articlePost);

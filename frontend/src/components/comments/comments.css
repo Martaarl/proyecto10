@@ -68,3 +68,9 @@
 .Comment-Form button:hover{
     transform: scale(1.05);
 }
+
+.Comment-Message {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 15px;
+}

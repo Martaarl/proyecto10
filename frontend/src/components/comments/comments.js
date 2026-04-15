@@ -20,7 +20,18 @@ export const Comments = async (postId) => {
 
     const commentsContainer = document.createElement("div");
     
-    container.append(form, commentsContainer);
+    const token = localStorage.getItem("token");
+
+    if (token) {
+        container.append(form, commentsContainer);
+    } else {
+        const message = document.createElement("p");
+        message.textContent = "Inicia sesión para comentar 👤";
+        message.className = "Comment-Message";
+
+        container.append(message, commentsContainer);
+    }
+
 
     const renderComments = async () => {
         commentsContainer.innerHTML = "<p>Cargando comentarios...</p>";
