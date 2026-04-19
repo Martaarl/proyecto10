@@ -1,3 +1,4 @@
+import { isLogged } from "../../../../src/utils/logged.js";
 import { API } from "../../utils/api.js";
 import { getComments } from "../../utils/comments.js";
 
@@ -20,9 +21,7 @@ export const Comments = async (postId) => {
 
     const commentsContainer = document.createElement("div");
     
-    const token = localStorage.getItem("token");
-
-    if (token) {
+    if (isLogged) {
         container.append(form, commentsContainer);
     } else {
         const message = document.createElement("p");
@@ -67,6 +66,8 @@ export const Comments = async (postId) => {
         e.preventDefault();
 
         const text = input.value;
+
+        if (!text.trim()) return;
 
         await API ({
             endpoint: "/comments",

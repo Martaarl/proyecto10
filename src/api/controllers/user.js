@@ -175,4 +175,19 @@ const userLikedPost = async (req, res, next) => {
     }
 }
 
-module.exports = {register, login, getUser, updateProfile, deleteUser, userLikedPost};
+const getlikedPosts = async(req, res, next) => {
+    try {
+        const user = await User.findById(req.user._id);
+
+        if (!user) {
+            return res.status(404).json({error: "Usuario no encontrado"});
+        }
+
+        return res.status(200).json(user.likedPosts);
+
+    } catch (error) {
+        return res.status(500).json({error: "Error interno del servidor"});
+    }
+}
+
+module.exports = {register, login, getUser, updateProfile, deleteUser, userLikedPost, getlikedPosts};

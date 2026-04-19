@@ -10,10 +10,7 @@ export const API = async ({endpoint, method = "GET", body, isJson = false, token
 
         if (token) {
             headers["Authorization"]= `Bearer ${token}`;
-        }
-
-        console.log("URL:", URL + endpoint);
-        console.log("URL:", URL + endpoint);
+        };
 
         const res = await fetch(URL+endpoint, {
             body: isJson ? JSON.stringify(body) : body,
