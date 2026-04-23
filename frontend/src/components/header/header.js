@@ -1,6 +1,6 @@
+import { isLogged, logout } from "../../../../src/utils/logged.js";
 
-
-export const Header = (loginClick, onSearch) => {
+export const Header = (loginClick, onSearch, profileClick,onLogout) => {
     const header = document.createElement("header");
     header.className = "header";
 
@@ -14,14 +14,32 @@ export const Header = (loginClick, onSearch) => {
     const title = document.createElement("h1");
     title.textContent = "Fur Travellers 🐾";
 
-    const buttonLogin = document.createElement("button");
-    buttonLogin.textContent = "👤";
-    buttonLogin.className="Button-Login";
+    if (isLogged()) {
+        const buttonProfile = document.createElement("button");
+        buttonProfile.textContent = "❤️";
+        buttonProfile.className = "Button-Profile";
 
-    buttonLogin.addEventListener("click", loginClick)
+        const buttonLogout = document.createElement("button");
+        buttonLogout.textContent = "🚪";
+        buttonLogout.className = "Button-Logout";
 
-    upperHeader.append(logo, title, buttonLogin);
+        buttonProfile.addEventListener("click", profileClick);
 
+        buttonLogout.addEventListener("click", () => {
+            logout();
+            onLogout();
+        });
+        upperHeader.append(logo, title, buttonProfile, buttonLogout);
+    } else {
+        const buttonLogin = document.createElement("button");
+        buttonLogin.textContent = "👤";
+        buttonLogin.className="Button-Login";
+
+        buttonLogin.addEventListener("click", loginClick)
+
+        upperHeader.append(logo, title, buttonLogin);
+    };
+    
     const lowerHeader = document.createElement("div");
     lowerHeader.className = "Lower-Header";
 

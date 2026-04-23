@@ -6,3 +6,7 @@ export const isLogged = () => {
         return false;
     }
 }
+
+export const logout = () => {
+    localStorage.removeItem("token");
+};

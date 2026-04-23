@@ -9,6 +9,9 @@ export const Comments = async (postId) => {
     const form = document.createElement("form");
     form.className = "Comment-Form";
 
+    const errorMessage = document.createElement("p");
+    errorMessage.className = "Error-Text";
+
     const input = document.createElement("input");
     input.placeholder= "Escribe un comentario...";
     input.className= "Comment-Input";
@@ -17,7 +20,7 @@ export const Comments = async (postId) => {
     button.textContent = "📤";
     button.type = "Submit";
 
-    form.append(input, button);
+    form.append(input, button, errorMessage);
 
     const commentsContainer = document.createElement("div");
     
@@ -30,7 +33,6 @@ export const Comments = async (postId) => {
 
         container.append(message, commentsContainer);
     }
-
 
     const renderComments = async () => {
         commentsContainer.innerHTML = "<p>Cargando comentarios...</p>";
@@ -67,9 +69,16 @@ export const Comments = async (postId) => {
 
         const text = input.value;
 
-        if (!text.trim()) return;
+        if (!text.trim()) {
+            alert("El comentario no puede estar vacío");
+            return
+        };
 
-        await API ({
+        button.textContent = "Enviando...";
+        button.disabled = true;
+        errorMessage.textContent = "";
+
+        const res = await API ({
             endpoint: "/comments",
             method: "POST",
             body: {
@@ -80,9 +89,19 @@ export const Comments = async (postId) => {
             token: localStorage.getItem("token")
         });
 
+        if (res?.error) {
+            errorMessage.textContent = res.error;
+            button.textContent = "📤";
+            button.disabled = false;
+            return;
+        }
+
         input.value = "";
 
         renderComments();
+
+        button.textContent = "📤";
+        button.disabled = false;
 
     });
 

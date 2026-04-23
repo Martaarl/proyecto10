@@ -8,14 +8,19 @@ export const Posts = async (search = "", onPostClick) => {
     const posts = await API({endpoint: "/posts"});
     if (!posts) return null;
 
+    console.log("TOKEN:", localStorage.getItem("token"));
+
     let likedPosts = [];
 
     if (isLogged()) {
-      likedPosts = await API ({
-        endpoint: "/users/me/likedPosts",
+        const user = await API ({
+        endpoint: "/users/me",
         token: localStorage.getItem("token")
       });
+
+       likedPosts = user?.likedPosts || [];
     };
+
 
     const filteredPosts = posts.filter(post=>{
        return post.title.toLowerCase().includes((search || "").toLowerCase());
@@ -36,7 +41,7 @@ export const Posts = async (search = "", onPostClick) => {
         imgPost.alt = post.title;
         imgPost.className= "Image-Post";
 
-        const isLiked = likedPosts.includes(post._id);
+        const isLiked = likedPosts.some(p=>p._id === post._id);
 
         const likeButton = document.createElement("button");
         likeButton.className = "Like-Button";
@@ -54,7 +59,6 @@ export const Posts = async (search = "", onPostClick) => {
         articlePost.append(imgPost, likeButton, content);
 
         articlePost.addEventListener("click", () => {
-        console.log("Click en post");
           onPostClick(post);
         });
 
@@ -67,16 +71,22 @@ export const Posts = async (search = "", onPostClick) => {
           };
 
           const token = localStorage.getItem("token");
-
-          const res = await API({
-            endpoint: `/users/likedPosts/${post._id}`,
+          if (token) {
+            const user = await API({
+            endpoint: `/users/likedPost/${post._id}`,
             method: "PUT", 
             token
           });
 
-          const isNowLiked = res.liked;
+          if (user&& user.likedPosts) {
+            likedPosts = user.LikedPosts;
+          }};
+  
+          likeButton.textContent = likeButton.textContent === "🤍" ? "❤️" : "🤍";
 
-          likeButton.textContent = isNowLiked ? "❤️" : "🤍";
+          /*const isNowLiked = res.liked;
+
+          likeButton.textContent = isNowLiked ? "❤️" : "🤍";*/
         });
 
         container.appendChild(articlePost);

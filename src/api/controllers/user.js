@@ -177,13 +177,13 @@ const userLikedPost = async (req, res, next) => {
 
 const getlikedPosts = async(req, res, next) => {
     try {
-        const user = await User.findById(req.user._id);
-
-        if (!user) {
-            return res.status(404).json({error: "Usuario no encontrado"});
+        console.log("REQ.USER:", req.user);
+        if (!req.user) {
+            return res.status(401).json({ error: "No hay usuario en request" });
         }
+        const user = await User.findById(req.user._id).populate("likedPosts");
 
-        return res.status(200).json(user.likedPosts);
+        return res.status(200).json(user);
 
     } catch (error) {
         return res.status(500).json({error: "Error interno del servidor"});

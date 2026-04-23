@@ -3,7 +3,7 @@ const URL =  "http://localhost:3000";
 export const API = async ({endpoint, method = "GET", body, isJson = false, token = null}) => {
     try {
         const headers = {};
-        //esto en verdad podría hacerse también con un if para token y otro para el isJson no?
+       
         if(isJson){
             headers["Content-Type"] = "application/json";
         }; 
@@ -13,17 +13,21 @@ export const API = async ({endpoint, method = "GET", body, isJson = false, token
         };
 
         const res = await fetch(URL+endpoint, {
-            body: isJson ? JSON.stringify(body) : body,
             method,
-            headers
+            headers,
+            body: isJson ? JSON.stringify(body) : body
         });
 
         const data = await res.json();
+        if (!res.ok) {
+            console.error("API ERROR: ", data);
+            return {error: data.error || "Error desconocido"}
+        }
 
         return data;
 
     } catch (error) {
-        console.error("API ERROR", error)
+        console.error("API ERROR", error);
         return null
     }
 }

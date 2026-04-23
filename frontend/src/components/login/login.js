@@ -1,3 +1,4 @@
+import { renderApp } from "../../main/main.js";
 import { API } from "../../utils/api.js";
 
 export const Login = async (goToRegister, goBack) => {
@@ -57,9 +58,11 @@ export const Login = async (goToRegister, goBack) => {
             return;
         }
         localStorage.setItem("token", data.token);
+        renderApp();
 
         alert("Sesión iniciada correctamente✅");
         goBack();
+        
     });
 
     goRegister.addEventListener("click", goToRegister);
