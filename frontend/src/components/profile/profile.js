@@ -3,8 +3,9 @@ import { API } from "../../utils/api.js";
 
 export const Profile = async () => {
     const container = document.createElement("section");
+    container.className = "Section-Profile";
 
-    if (!isLogged) {
+    if (!isLogged()) {
         container.innerHTML = "<p>Debes iniciar sesión</p>";
         return container;
     }
@@ -15,6 +16,7 @@ export const Profile = async () => {
     });
 
     const title = document.createElement("h2");
+    title.className = "Title-Favourites";
     title.textContent = "💚Aquí están tus posts favoritos";
 
     container.appendChild(title);

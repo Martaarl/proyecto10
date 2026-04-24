@@ -28,7 +28,7 @@ export const renderPosts = async (search = "") => {
 
     const posts = await Posts(search, showPostDetail);
 
-    if (!posts) {
+    if (!posts|| posts?.error) {
         contentContainer.innerHTML = `<p class = "Error-Message"> Error cargando los posts </p>`;
         return;
     }

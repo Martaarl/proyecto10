@@ -5,7 +5,6 @@
     margin-top: 25px;
     width: 100%;
     max-width: 600px;
-    height: 20px;
 }
 
 .Comment-Div {
@@ -13,6 +12,7 @@
     padding: 12px 14px;
     border-radius: 15px;
     margin-bottom: 12px;
+    width: 100%;
 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
 
@@ -39,13 +39,15 @@
 .Comment-Form {
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     gap: 10px;
     margin-bottom: 20px;
 }
 
 .Comment-Input {
     display: flex;
+    width: 100%;
     flex-direction: column;
     padding: 10px;
     border-radius: 12px;
@@ -73,4 +75,24 @@
     font-size: 14px;
     color: #888;
     margin-bottom: 15px;
+}
+
+.Error-Text {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+@media (max-width: 480px) {
+    .Comments-Container{
+        padding: 0 10px;
+    }
+
+    .Comment-Div{
+        padding: 10px;
+    }
+
+    .Comment-Form{
+        max-width: 100%;
+    }
 }

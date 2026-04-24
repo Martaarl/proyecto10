@@ -4,12 +4,9 @@ const {verifyJwt} = require("../config/jwt");
 const isAuth = async (req, res, next) => {
     try {
         const token = req.headers["authorization"];
-        console.log("ENTRANDO EN isAuth");
-        console.log("HEADERS:", req.headers.authorization);
-        console.log("AUTH HEADER:", req.headers.authorization);
-        
+       
         if (!token) {
-            return res.status(401).json({error:"No se ha enviado ningún token"})
+            return res.status(401).json({error:"Necesitas estar logeado para comentar"})
         }
 
         const parsedToken = token.replace("Bearer ", "");
@@ -24,7 +21,6 @@ const isAuth = async (req, res, next) => {
         next();
 
     } catch (error) {
-        console.error("ERROR AUTH", error)
         return res.status(401).json({error:"No estás autorizado"})
     }
 }

@@ -1,0 +1,24 @@
+.Section-Profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.Title-Favourites {
+    color: var(--green-main);
+    text-align: center;
+}
+
+.Fav-Post{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 800px;
+}
+
+/*.Fav-Post{
+
+}

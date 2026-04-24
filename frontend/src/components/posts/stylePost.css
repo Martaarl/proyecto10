@@ -1,6 +1,7 @@
 .Card-Post {
     position: relative;
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     height: 350px;
     overflow: hidden;
     border-radius: 18px;
@@ -12,17 +13,16 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 15%;
 
     background: linear-gradient(
         to top,
-        rgba(0,0,0,1.2),
+        rgba(0,0,0,0.8),
         rgba(0,0,0,1),
         transparent
     );
 
     color: white;
-    padding: 10px;
+    padding: 12px;
 
     display: flex;
     flex-direction: column;
@@ -68,9 +68,9 @@
 
     border: none;
     border-radius: 80%;
-    width: 50px;
+    width: auto;
 
-    padding: 8px;
+    padding: 10px;
     cursor: pointer;
 
     font-size: 16px;
@@ -81,4 +81,22 @@
 
 .Like-Button:hover {
     transform: scale(1.2);
+}
+
+
+@media (max-width: 768px) {
+    .Card-Content {
+        transform: translateY(0);
+    }
+
+    .Description-Post {
+        opacity: 1;
+        max-height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .Card-Post {
+        height: 300px;
+    }
 }

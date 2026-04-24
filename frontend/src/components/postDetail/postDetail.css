@@ -14,7 +14,7 @@
 }
 .Detail-Image {
     width: 100%;
-    max-width: 300px;
+    max-width: 400px;
     border-radius: 15px;
     margin: 20px 0;
 }
@@ -47,4 +47,29 @@
 
 .Post-Card:hover{
     transform: translateY(-5px);
+}
+
+@media (max-width: 480px) {
+    .Post-Detail{
+        padding: 20px 10px;
+        gap: 15px;
+    }
+
+    .Detail-Image {
+        max-width: 100%;
+    }
+
+    .Detail-Description {
+        font-size: 14px;
+        padding: 0 5px;
+    }
+
+    .ButtonBack{
+        font-size: 26px;
+        width: auto;
+    }
+    .Post-Card {
+        padding: 15px;
+        border-radius: 15px;
+    }
 }

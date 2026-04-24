@@ -8,9 +8,9 @@ header{
     background-color: white;
     border-bottom: 1px solid #eee;
     align-self: center;
-    padding: 40px;
     margin: 0;
     gap: 20px;
+    padding: 20px 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
@@ -65,7 +65,6 @@ h1{
 }
 
 .Subtitle {
-    font-size: clamp(14px, 2vw, 18px);
     font-weight: 400;
     color: #666;
     text-align: center;
@@ -79,7 +78,6 @@ h1{
     border-radius: 25px;
     border: 1px solid #ddd;
     outline: none;
-    height: 10px;
     transition: all 0.3s ease;
     content: center;
 }
@@ -113,4 +111,25 @@ h1{
     cursor: pointer;
     font-size: 14px;
     transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .Upper-Header{
+        flex-direction: column;
+        gap: 10px;
+    }
+    header {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .Button-Login, .Button-Profile, .Button-Logout{
+        width: auto;
+        padding: 10px 20px;
+    }
+
+    .Logo {
+        width: 90px;
+    }
 }

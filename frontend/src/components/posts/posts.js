@@ -6,9 +6,7 @@ export const Posts = async (search = "", onPostClick) => {
     container.id= "posts-container";
 
     const posts = await API({endpoint: "/posts"});
-    if (!posts) return null;
-
-    console.log("TOKEN:", localStorage.getItem("token"));
+    if (!posts|| posts.error) return null;
 
     let likedPosts = [];
 
@@ -20,7 +18,6 @@ export const Posts = async (search = "", onPostClick) => {
 
        likedPosts = user?.likedPosts || [];
     };
-
 
     const filteredPosts = posts.filter(post=>{
        return post.title.toLowerCase().includes((search || "").toLowerCase());
