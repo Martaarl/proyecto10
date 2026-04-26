@@ -2,8 +2,6 @@ const { isAuth } = require("../../middlewares/auth");
 const { register, login, getUser, updateProfile, deleteUser, userLikedPost, getlikedPosts } = require("../controllers/user");
 const router = require("express").Router();
 
-console.log("USER ROUTES CARGADAS");
-
 router.post("/register", register);
 router.post("/login", login);
 

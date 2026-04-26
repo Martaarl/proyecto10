@@ -3,7 +3,7 @@ import { API } from "../../utils/api.js";
 
 export const Profile = async () => {
     const container = document.createElement("section");
-    container.className = "Section-Profile";
+    container.className = "Fav-Container";
 
     if (!isLogged()) {
         container.innerHTML = "<p>Debes iniciar sesión</p>";
@@ -22,6 +22,7 @@ export const Profile = async () => {
     container.appendChild(title);
 
     const postsContainer = document.createElement("div");
+    postsContainer.className = "Fav-Div";
 
     if (!user.likedPosts || user.likedPosts.length === 0) {
         postsContainer.innerHTML = "<p>No tienes favoritos</p>";
@@ -35,12 +36,12 @@ export const Profile = async () => {
 
         const title = document.createElement("h3");
         title.textContent= post.title;
-        title.className = "Post-Title";
+        title.className = "Title-Post";
 
         const img = document.createElement("img");
         img.src = post.image?.url;
         img.className = "Post-Image";
-        
+
         postDiv.append(title, img);
         postsContainer.appendChild(postDiv);
     });
