@@ -1,0 +1,35 @@
+.Footer {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    background-color: var(--green-main);
+    border-top: 1px solid #eee;
+   padding: 20px 0;
+    margin-top: 40px;
+}
+
+.Div-Footer {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: pink;
+}
+
+.Anchor-Footer {
+    text-decoration: none;
+    color: white;
+}
+
+.Anchor-Footer:hover {
+    text-decoration: underline;
+}
+
+.Footer-Legal {
+    font-size: 12px;
+    color: white;
+}

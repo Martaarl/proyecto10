@@ -1,9 +1,17 @@
 import { isLogged } from "../../../../src/utils/logged.js";
 import { API } from "../../utils/api.js";
 
-export const Profile = async () => {
+export const Profile = async (goHome) => {
     const container = document.createElement("section");
-    container.className = "Fav-Container";
+    container.className = "Profile-Container";
+
+    const backButton = document.createElement("button");
+    backButton.textContent = "← Volver";
+    backButton.className = "Button-Back";
+
+    backButton.addEventListener("click", () => {
+        goHome();
+    });
 
     if (!isLogged()) {
         container.innerHTML = "<p>Debes iniciar sesión</p>";
@@ -17,16 +25,14 @@ export const Profile = async () => {
 
     const title = document.createElement("h2");
     title.className = "Title-Favourites";
-    title.textContent = "💚Aquí están tus posts favoritos";
-
-    container.appendChild(title);
+    title.textContent = "💚 Aquí están tus posts favoritos";
 
     const postsContainer = document.createElement("div");
-    postsContainer.className = "Fav-Div";
+    postsContainer.className = "Fav-Container";
 
     if (!user.likedPosts || user.likedPosts.length === 0) {
         postsContainer.innerHTML = "<p>No tienes favoritos</p>";
-        container.appendChild(postsContainer);
+        container.append(title, postsContainer);
         return container;
     }
 
@@ -34,19 +40,19 @@ export const Profile = async () => {
         const postDiv = document.createElement("div");
         postDiv.className="Fav-Post";
 
-        const title = document.createElement("h3");
-        title.textContent= post.title;
-        title.className = "Title-Post";
-
         const img = document.createElement("img");
         img.src = post.image?.url;
         img.className = "Post-Image";
 
-        postDiv.append(title, img);
+        const titlePost = document.createElement("h3");
+        titlePost.textContent= post.title;
+        titlePost.className = "Title-Post";
+
+        postDiv.append(img, titlePost);
         postsContainer.appendChild(postDiv);
     });
 
-    container.appendChild(postsContainer);
+    container.append(backButton, title, postsContainer);
 
     return container;
 }

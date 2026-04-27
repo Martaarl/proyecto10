@@ -1,3 +1,4 @@
+import { Footer } from "../components/footer/footer.js";
 import { Header } from "../components/header/header.js";
 import { Login } from "../components/login/login.js";
 import { Postdetail } from "../components/postDetail/postDetail.js";
@@ -17,14 +18,16 @@ export const renderApp =  async () => {
 
     contentContainer = document.createElement("div");
     contentContainer.id = "content";
+
+    const footer = Footer();
     
-    app.append(header, contentContainer);
+    app.append(header, contentContainer, footer);
 
     renderPosts();
 };
 
 export const renderPosts = async (search = "") => {
-    contentContainer.innerHTML = "<p>Cargando posts...</p>";
+    contentContainer.innerHTML = "<p class= 'Loading'>Cargando posts...</p>";
 
     const posts = await Posts(search, showPostDetail);
 
@@ -68,7 +71,7 @@ const showPostDetail = async (post) =>{
 const showProfile = async () => {
     contentContainer.innerHTML = "<p>Cargando perfil</>";
 
-    const profile = await Profile();
+    const profile = await Profile(goHome);
 
     contentContainer.innerHTML = "";
     contentContainer.appendChild(profile);
