@@ -25,13 +25,16 @@ const register = async (req, res, next) => {
 
     const userSaved = await newUser.save();
 
+    const token = generateSign(userSaved._id)
+
     return res.status(201).json({
         userName: userSaved.userName,
         email: userSaved.email,
         avatar: userSaved.avatar
-    })
-         
-    } catch (error) {
+    },
+        token
+    )} catch (error) {
+        console.log(error);
         return res.status(500).json({error: "Error interno del servidor"})
     }
 

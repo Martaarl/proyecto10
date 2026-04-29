@@ -1,5 +1,5 @@
+import { renderApp } from "../../main/main.js";
 import { API } from "../../utils/api.js";
-
 
 export const Register = (goBack) => {
     const sectionRegister = document.createElement("section");
@@ -37,24 +37,30 @@ export const Register = (goBack) => {
     form.addEventListener("submit", async(e) => {
         e.preventDefault();
 
-        const userName = inputName.value;
+        const name = inputName.value;
         const email = inputEmail.value;
         const password = inputPassword.value;
-
-        const res = await API({
+    
+    try {
+        const data = await API({
             endpoint: "/users/register",
             method: "POST",
-            body: {userName, email, password},
+            body: {name, email, password},
             isJson: true,
             });
 
-            const data = await res.json();
-
             localStorage.setItem("token", data.token);
-            goBack();
+            alert("✅ Te has registrado correctamente");
+            
+            renderApp();
+            
+     } catch (error) {
+        console.error("Error en el register:", error);
+        alert("Error al registrarse");
+     }
     });
 
     backButton.addEventListener("click", goBack);
 
     return sectionRegister;
-}
+};

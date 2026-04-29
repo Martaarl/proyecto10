@@ -27,7 +27,7 @@ export const renderApp =  async () => {
 };
 
 export const renderPosts = async (search = "") => {
-    contentContainer.innerHTML = "<p class= 'Loading'>Cargando posts...</p>";
+    contentContainer.innerHTML = "<div class= 'Loading'>Cargando posts...</div>";
 
     const posts = await Posts(search, showPostDetail);
 
@@ -69,7 +69,7 @@ const showPostDetail = async (post) =>{
 }
 
 const showProfile = async () => {
-    contentContainer.innerHTML = "<p>Cargando perfil</>";
+    contentContainer.innerHTML = "<p class='charging'>Cargando perfil</>";
 
     const profile = await Profile(goHome);
 

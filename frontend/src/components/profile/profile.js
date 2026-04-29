@@ -31,7 +31,7 @@ export const Profile = async (goHome) => {
     postsContainer.className = "Fav-Container";
 
     if (!user.likedPosts || user.likedPosts.length === 0) {
-        postsContainer.innerHTML = "<p>No tienes favoritos</p>";
+        postsContainer.innerHTML = "<p class='NoFavs'>No tienes favoritos</p>";
         container.append(title, postsContainer);
         return container;
     }

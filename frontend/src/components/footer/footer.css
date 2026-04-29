@@ -17,7 +17,7 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-    background-color: pink;
+    background-color: var(--green-main);
 }
 
 .Anchor-Footer {
