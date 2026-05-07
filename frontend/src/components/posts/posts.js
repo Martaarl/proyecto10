@@ -1,4 +1,4 @@
-import { isLogged } from "../../../../src/utils/logged.js";
+import { isLogged } from "../../utils/logged.js";
 import { API } from "../../utils/api.js";
 
 export const Posts = async (search = "", onPostClick) => {
@@ -70,7 +70,7 @@ export const Posts = async (search = "", onPostClick) => {
           const token = localStorage.getItem("token");
           if (token) {
             const user = await API({
-            endpoint: `/users/likedPost/${post._id}`,
+            endpoint: `/users/likedPosts/${post._id}`,
             method: "PUT", 
             token
           });

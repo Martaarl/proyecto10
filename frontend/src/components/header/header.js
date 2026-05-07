@@ -1,4 +1,4 @@
-import { isLogged, logout } from "../../../../src/utils/logged.js";
+import { isLogged, logout } from "/frontend/src/utils/logged.js";
 
 export const Header = (loginClick, onSearch, profileClick,onLogout) => {
     const header = document.createElement("header");

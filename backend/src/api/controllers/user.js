@@ -180,6 +180,7 @@ const userLikedPost = async (req, res, next) => {
 
 const getlikedPosts = async(req, res, next) => {
     try {
+        console.log("USER RAW:", await User.findById(req.user._id));
         if (!req.user) {
             return res.status(401).json({ error: "No hay usuario en request" });
         }

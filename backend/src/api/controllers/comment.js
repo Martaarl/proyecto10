@@ -1,6 +1,6 @@
-const BannedWord = require("../models/bannedWord");
-const Comment = require("../models/comment");
-const Post = require("../models/post");
+const BannedWord = require("../models/bannedWord.js");
+const Comment = require("../models/comment.js");
+const Post = require("../models/post.js");
 
 const createComment = async (req, res, next) => {
     try {
@@ -32,6 +32,7 @@ const createComment = async (req, res, next) => {
         })
 
         await newComment.save();
+        await newComment.populate("user");
 
         post.comments.push(newComment._id);
         await post.save();
@@ -99,7 +100,7 @@ const getCommentsByPost = async (req, res, next) => {
     try {
         const {postId} = req.params;
 
-        const comments= await Comment.find({post: postId}).populate("user", "name");
+        const comments= await Comment.find({post: postId}).populate("user", "userName");
 
         return res.status(200).json(comments);
     } catch (error) {

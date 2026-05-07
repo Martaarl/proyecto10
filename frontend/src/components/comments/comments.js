@@ -1,4 +1,4 @@
-import { isLogged } from "../../../../src/utils/logged.js";
+import { isLogged } from "/frontend/src/utils/logged.js";
 import { API } from "../../utils/api.js";
 import { getComments } from "../../utils/comments.js";
 
@@ -52,7 +52,7 @@ export const Comments = async (postId) => {
 
             const commentUser = document.createElement("p");
             commentUser.className = "Comment-User";
-            commentUser.textContent = comment.user?.name || "Usario";
+            commentUser.textContent = comment.user?.userName || "Usario";
 
             const commentText = document.createElement("p");
             commentText.textContent= comment.text;

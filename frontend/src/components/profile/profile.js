@@ -1,4 +1,4 @@
-import { isLogged } from "../../../../src/utils/logged.js";
+import { isLogged } from "/frontend/src/utils/logged.js";
 import { API } from "../../utils/api.js";
 
 export const Profile = async (goHome) => {
