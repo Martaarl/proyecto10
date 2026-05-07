@@ -81,9 +81,6 @@ export const Posts = async (search = "", onPostClick) => {
   
           likeButton.textContent = likeButton.textContent === "🤍" ? "❤️" : "🤍";
 
-          /*const isNowLiked = res.liked;
-
-          likeButton.textContent = isNowLiked ? "❤️" : "🤍";*/
         });
 
         container.appendChild(articlePost);

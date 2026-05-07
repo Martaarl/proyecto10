@@ -94,16 +94,11 @@ const getUser = async (req, res, next) => {
 
 const updateProfile = async (req, res, next) => {
     try {
-        //sería ideal añadir un find(email y userName para evitar duplicados?)
     
         const user = await User.findById(req.user._id);
         if (!user) return res.status(404).json({error: "Usuario no encontrado"});
 
         const {userName, password, email, avatar} = req.body;
-
-       /* if (email) {
-            const existingEmail = await User.findOne({email});
-        }*/
 
         if (userName) user.userName = userName;
         if (password) user.password = password;
@@ -179,7 +174,7 @@ const userLikedPost = async (req, res, next) => {
 
 const getlikedPosts = async(req, res, next) => {
     try {
-        console.log("USER RAW:", await User.findById(req.user._id));
+       
         if (!req.user) {
             return res.status(401).json({ error: "No hay usuario en request" });
         }

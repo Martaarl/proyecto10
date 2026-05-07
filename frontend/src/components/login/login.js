@@ -87,7 +87,6 @@ export const Login = async (goToRegister, goBack) => {
     goRegister.addEventListener("click", goToRegister);
 
     backButton.addEventListener("click", () => {
-        console.log("click back"), 
         goBack()});
 
     return sectionLogin;
