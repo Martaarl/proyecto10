@@ -56,7 +56,6 @@ const login = async (req, res, next) => {
             return res.status(401).json({error: "Credenciales inválidos"})
         }
         
-        console.log(process.env.JWT_SECRET);
         const token = generateSign (user);
         
 

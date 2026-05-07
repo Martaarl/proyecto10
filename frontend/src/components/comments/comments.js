@@ -1,10 +1,15 @@
 import { isLogged } from "/frontend/src/utils/logged.js";
 import { API } from "../../utils/api.js";
 import { getComments } from "../../utils/comments.js";
-
+console.log(import.meta.url);
 export const Comments = async (postId) => {
     const container = document.createElement("div");
     container.className = "Comments-Container";
+
+    const user = await API ({
+        endpoint: "/users/me",
+        token: localStorage.getItem("token")
+    });
 
     const form = document.createElement("form");
     form.className = "Comment-Form";
@@ -24,7 +29,7 @@ export const Comments = async (postId) => {
 
     const commentsContainer = document.createElement("div");
     
-    if (isLogged) {
+    if (isLogged()) {
         container.append(form, commentsContainer);
     } else {
         const message = document.createElement("p");
@@ -57,6 +62,29 @@ export const Comments = async (postId) => {
             const commentText = document.createElement("p");
             commentText.textContent= comment.text;
             commentText.className = "Comment-Text";
+
+            if (user?.rol === "admin") {
+                const superLikeButton = document.createElement("button");
+
+                superLikeButton.textContent = "⭐️";
+                superLikeButton.className = "SuperLike-Button";
+
+                superLikeButton.addEventListener("click", async() => {
+                    await API ( {
+                        endpoint: `/comments/superlike/${comment._id}`,
+                        method: "PUT",
+                        token: localStorage.getItem("token")
+                    })
+                
+                    renderComments();
+                });
+
+                commentDiv.appendChild(superLikeButton);
+            }
+
+            if (comment.superLike) {
+                commentDiv.classList.add("SuperLiked");
+            }
 
             commentDiv.append(commentUser, commentText);
 

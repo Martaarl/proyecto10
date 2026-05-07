@@ -86,7 +86,7 @@ const superLikeComment = async (req, res, next) => {
             return res.status(403).json({error: "No tienes permisos para realizar esta acción"})
         }
 
-        comment.superLike = true;
+        comment.superLike = !comment.superLike;
 
         await comment.save();
 

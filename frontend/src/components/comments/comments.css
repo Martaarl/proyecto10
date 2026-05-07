@@ -83,6 +83,37 @@
   margin-top: 5px;
 }
 
+.SuperLike-Button {
+    border: none;
+    background-color: white;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.SuperLike-Button:hover{
+    transform: scale(1.2);
+}
+
+.SuperLiked{
+    border: 2px solid gold;
+    background-color: linear-gradient(
+        135deg,
+        #fff9db,
+        #fff3b0
+    );
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.SuperLiked:hover{
+    transform: translateY(-2px);
+}
+
 @media (max-width: 480px) {
     .Comments-Container{
         padding: 0 10px;
