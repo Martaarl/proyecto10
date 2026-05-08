@@ -1,4 +1,4 @@
-const URL =  "http://localhost:3000";
+const URL =  "https://furtravellers.onrender.com";
 
 export const API = async ({endpoint, method = "GET", body, isJson = false, token = null}) => {
     try {
