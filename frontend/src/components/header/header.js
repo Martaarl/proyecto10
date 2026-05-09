@@ -9,7 +9,7 @@ export const Header = (loginClick, onSearch, profileClick,onLogout) => {
 
     const logo = document.createElement("img");
     logo.className= "Logo";
-    logo.src = "assets/PHOTO-2025-02-06-22-10-19.jpg";
+    logo.src = "/logo.jpg";
 
     const title = document.createElement("h1");
     title.textContent = "Fur Travellers 🐾";
