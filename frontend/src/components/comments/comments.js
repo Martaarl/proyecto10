@@ -1,4 +1,4 @@
-import { isLogged } from "/frontend/src/utils/logged.js";
+import { isLogged } from "../";
 import { API } from "../../utils/api.js";
 import { getComments } from "../../utils/comments.js";
 console.log(import.meta.url);
