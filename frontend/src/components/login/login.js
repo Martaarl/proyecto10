@@ -1,5 +1,5 @@
-import { renderApp } from "/frontend/src/main/main.js";
-import { API } from "/frontend/src/utils/api.js";
+import { renderApp } from "../../src/main/main.js";
+import { API } from "../../src/utils/api.js";
 
 export const Login = async (goToRegister, goBack) => {
 

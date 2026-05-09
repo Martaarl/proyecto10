@@ -1,4 +1,4 @@
-import { isLogged } from "/frontend/src/utils/logged.js";
+import { isLogged } from "../../utils/logged.js";
 import { API } from "../../utils/api.js";
 
 export const Posts = async (search = "", onPostClick) => {

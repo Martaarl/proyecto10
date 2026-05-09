@@ -1,4 +1,4 @@
-import { isLogged, logout } from "/frontend/src/utils/logged.js";
+import { isLogged, logout } from "../../utils/logged";
 
 export const Header = (loginClick, onSearch, profileClick,onLogout) => {
     const header = document.createElement("header");
@@ -9,7 +9,7 @@ export const Header = (loginClick, onSearch, profileClick,onLogout) => {
 
     const logo = document.createElement("img");
     logo.className= "Logo";
-    logo.src = "/frontend/assets/PHOTO-2025-02-06-22-10-19.jpg";
+    logo.src = "../../../assets/PHOTO-2025-02-06-22-10-19.jpg";
 
     const title = document.createElement("h1");
     title.textContent = "Fur Travellers 🐾";
