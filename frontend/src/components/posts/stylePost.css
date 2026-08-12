@@ -81,6 +81,12 @@
     background-color: var(--green-soft);
 }
 
+.Favourite-Mesaage {
+    margin: 8px 0;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
 .Like-Button:hover {
     transform: scale(1.2);
 }

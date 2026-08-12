@@ -83,7 +83,7 @@ La aplicación incluye mejoras básicas de SEO y accesibilidad:
 
 # 🧠 Tecnologías utilizadas
 
-## Frontend
+## 
 
 - JavaScript Vanilla
 - HTML5
@@ -106,7 +106,8 @@ La aplicación incluye mejoras básicas de SEO y accesibilidad:
 # 📁 Estructura del proyecto
 
 ```bash
-frontend/
+/
+ ├ public/   
  └ src/
     ├ components/
     ├ pages/
@@ -134,10 +135,10 @@ git clone <https://github.com/Martaarl/proyecto10.git>
 
 ---
 
-## 2️⃣ Instalar frontend
+## 2️⃣ Instalar 
 
 ```bash
-cd frontend
+cd 
 npm install
 ```
 
@@ -174,7 +175,7 @@ CLOUDINARY_SECRET=...
 npm run dev
 ```
 
-### Frontend
+### 
 
 Abrir con Live Server o servidor local.
 
@@ -228,6 +229,6 @@ Proyecto desarrollado con foco en:
 - Arquitectura organizada
 - Escalabilidad
 - Experiencia de usuario
-- Buenas prácticas frontend y backend
+- Buenas prácticas  y backend
 - Diseño responsive
 - Interacción dinámica

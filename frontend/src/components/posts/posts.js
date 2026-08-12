@@ -62,8 +62,17 @@ export const Posts = async (search = "", onPostClick) => {
         likeButton.addEventListener("click", async (e) =>{
           e.stopPropagation();
           
-          if (!isLogged) {
-            alert("Inicia sesión para guardar posts");
+          if (!isLogged()) {
+            const message = document.createElement("p");
+            message.textContent = "Debes iniciar sesión para guardar publicaciones en favoritos";
+            message.className = "Favourite-Message";
+
+            articlePost.appendChild(message);
+
+            setTimeout(()=> {
+              message.remove();
+            }, 3000);
+            
             return;
           };
 
@@ -76,7 +85,7 @@ export const Posts = async (search = "", onPostClick) => {
           });
 
           if (user&& user.likedPosts) {
-            likedPosts = user.LikedPosts;
+            likedPosts = user.likedPosts;
           }};
   
           likeButton.textContent = likeButton.textContent === "🤍" ? "❤️" : "🤍";

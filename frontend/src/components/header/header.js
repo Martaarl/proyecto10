@@ -1,3 +1,4 @@
+import { renderApp } from "../../main/main.js";
 import { isLogged, logout } from "../../utils/logged.js";
 
 export const Header = (loginClick, onSearch, profileClick,onLogout) => {
@@ -10,6 +11,10 @@ export const Header = (loginClick, onSearch, profileClick,onLogout) => {
     const logo = document.createElement("img");
     logo.className= "Logo";
     logo.src = "/logo.jpg";
+
+    logo.addEventListener("click", () => {
+        renderApp();
+    })
 
     const title = document.createElement("h1");
     title.textContent = "Fur Travellers 🐾";
