@@ -28,9 +28,21 @@
     background: none;
     border: none;
     font-size: 22px;
+    font-weight: 600;
     cursor: pointer;
     color: var(--green-main);
-    width: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+    gap: 5px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    transition: background 0.2s ease;
+}
+
+.ButtonBack:hover {
+    background: rgba(0, 150, 100, 0.08);
 }
 
 .Post-Card{
@@ -66,7 +78,7 @@
     }
 
     .ButtonBack{
-        font-size: 26px;
+        font-size: 16px;
         width: auto;
     }
     .Post-Card {

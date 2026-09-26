@@ -5,7 +5,7 @@ export const Postdetail = async (post, goBack) => {
     container.className = "Post-Detail";
 
     const backButton = document.createElement("button");
-    backButton.textContent = "Volver";
+    backButton.textContent = "← Volver";
     backButton.className = "ButtonBack";
 
     backButton.addEventListener("click", goBack);

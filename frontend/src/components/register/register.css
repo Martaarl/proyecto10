@@ -35,6 +35,15 @@
     margin: 10px;
 }
 
+.Toggle-Password{
+    background: none;
+    border: none;
+    color: var(--green-main);
+    font-size: 12px;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
 .Button-Submit{
     padding: 10px 15px;
     border-radius: 10px;

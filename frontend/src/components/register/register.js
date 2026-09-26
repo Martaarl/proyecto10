@@ -8,6 +8,9 @@ export const Register = (goBack) => {
     const form = document.createElement("form");
     form.className= "Register-Form";
 
+    const errorMessage = document.createElement("p");
+    errorMessage.className = "Error-Text";
+
     const inputName = document.createElement("input");
     inputName.className = "Input-Name";
     inputName.placeholder = "Nombre";
@@ -18,7 +21,23 @@ export const Register = (goBack) => {
 
     const inputPassword = document.createElement("input");
     inputPassword.className ="Input-Password";
+    inputPassword.type= "password";
     inputPassword.placeholder = "Contraseña";
+
+    const togglePassword = document.createElement("button");
+    togglePassword.type="button";
+    togglePassword.textContent= "Mostrar";
+    togglePassword.className= "Toggle-Password";
+
+    togglePassword.addEventListener("click", () => {
+        if (inputPassword.type === "password") {
+            inputPassword.type= "text";
+            togglePassword.textContent = "Ocultar";
+        } else{
+            inputPassword.type = "password";
+            togglePassword.textContent = "Mostrar";
+        } 
+    })
 
     const buttonRegister = document.createElement("button");
     buttonRegister.type = "submit";
@@ -30,16 +49,28 @@ export const Register = (goBack) => {
     backButton.className= "Button-Back";
     backButton.type= "button";
 
-    form.append(inputName, inputEmail, inputPassword, buttonRegister);
+    form.append(errorMessage, inputName, inputEmail, inputPassword, togglePassword, buttonRegister);
     form.prepend(backButton);
     sectionRegister.appendChild(form);
 
     form.addEventListener("submit", async(e) => {
         e.preventDefault();
 
+        errorMessage.textContent = "";
+
         const name = inputName.value;
         const email = inputEmail.value;
         const password = inputPassword.value;
+
+        if (!name || !email || !password) {
+            errorMessage.textContent = "Todos los campos son obligatorios";
+            return
+        }
+
+        if (!email.includes("@")|| !email.includes(".")) {
+            errorMessage.textContent = "Introduce un email válido";
+            return
+        }
     
     try {
         const data = await API({
@@ -49,6 +80,11 @@ export const Register = (goBack) => {
             isJson: true,
             });
 
+            if (!data || !data.token) {
+                errorMessage.textContent = "No se pudo completar el registro";
+                return;
+            }
+
             localStorage.setItem("token", data.token);
             alert("✅ Te has registrado correctamente");
             
@@ -56,7 +92,7 @@ export const Register = (goBack) => {
             
      } catch (error) {
         console.error("Error en el register:", error);
-        alert("Error al registrarse");
+        errorMessage.textContent = "Error al registrarse, inténtelo de nuevo";
      }
     });
 

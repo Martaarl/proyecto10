@@ -22,6 +22,7 @@ export const Login = async (goToRegister, goBack) => {
 
     const inputPassword = document.createElement("input");
     inputPassword.className = "Input-Password";
+    inputPassword.type = "password";
     inputPassword.placeholder = "Introduzca su contraseña";
     
     const buttonSubmit = document.createElement("button");
@@ -54,6 +55,11 @@ export const Login = async (goToRegister, goBack) => {
         if (!name|| !email|| !password) {
             errorMessage.textContent = "Todos los campos son obligatorios";
             return;
+        };
+
+        if (!email.includes("@")|| !email.includes(".")) {
+            errorMessage.textContent = "Introduce un email válido";
+            return;
         }
 
         buttonSubmit.textContent= "Entrando...";
@@ -67,7 +73,7 @@ export const Login = async (goToRegister, goBack) => {
             });
             
         if (!data || !data.token) {
-            console.error("Login fallido");
+            errorMessage.textContent = "Email o contraseña incorrectos";
             buttonSubmit.textContent = "Entrar";
             buttonSubmit.disabled= false;
             return;

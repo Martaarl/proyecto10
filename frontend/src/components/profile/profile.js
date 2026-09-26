@@ -14,7 +14,10 @@ export const Profile = async (goHome) => {
     });
 
     if (!isLogged()) {
-        container.innerHTML = "<p>Debes iniciar sesión</p>";
+        container.appendChild(backButton);
+        const message =document.createElement("p");
+        message.textContent = "Debes iniciar sesión";
+        container.appendChild(message);
         return container;
     }
 

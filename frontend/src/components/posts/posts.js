@@ -77,19 +77,12 @@ export const Posts = async (search = "", onPostClick) => {
           };
 
           const token = localStorage.getItem("token");
-          if (token) {
-            const user = await API({
-            endpoint: `/users/likedPosts/${post._id}`,
-            method: "PUT", 
-            token
-          });
 
           if (user&& user.likedPosts) {
             likedPosts = user.likedPosts;
-          }};
+             likeButton.textContent = likeButton.textContent === "🤍" ? "❤️" : "🤍";
+          };
   
-          likeButton.textContent = likeButton.textContent === "🤍" ? "❤️" : "🤍";
-
         });
 
         container.appendChild(articlePost);
